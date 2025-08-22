@@ -1,42 +1,46 @@
-
 <!DOCTYPE html>
 <html lang="es">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Lector Fanfic</title>
-  <link rel="stylesheet" href="./css/styles.css"/>
-</head>
-<body>
-  <div class="container">
-    <header>
-      <h1>📖 Lector de Fanfic</h1>
-      <input id="q" class="search" type="search" placeholder="Buscar por título, canción o código..." />
-    </header>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lector Fanfic</title>
+    <link rel="stylesheet" href="./css/styles.css" />
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <h1>📖 Lector de Fanfic</h1>
+        <input
+          id="q"
+          class="search"
+          type="search"
+          placeholder="Buscar por título, canción o código..."
+        />
+      </header>
 
-    <main id="home">
-      <section class="grid" id="list"></section>
-    </main>
+      <main id="home">
+        <section class="grid" id="list"></section>
+      </main>
 
-    <section id="reader" class="hidden">
-      <div class="card">
-        <img id="chapter-cover" alt="cover"/>
-        <h2 id="chapter-title">Título</h2>
-        <p id="chapter-song" class="meta"></p>
-        <div class="controls">
-          <button id="back" class="secondary">Volver</button>
-          <button id="prev" class="secondary">Anterior</button>
-          <button id="next">Siguiente</button>
-          <button id="play-audio" class="secondary">Reproducir música</button>
-          <audio id="bg-audio" preload="none"></audio>
+      <section id="reader" class="hidden">
+        <div class="card">
+          <img id="chapter-cover" alt="cover" />
+          <h2 id="chapter-title">Título</h2>
+          <p id="chapter-song" class="meta"></p>
+          <div class="controls">
+            <button id="back" class="secondary">Volver</button>
+            <button id="prev" class="secondary">Previous</button>
+            <button id="next">Siguiente</button>
+            <button id="play-audio" class="secondary">Reproducir música</button>
+            <audio id="bg-audio" preload="none"></audio>
+          </div>
+          <article id="chapter-text" class="reader"></article>
         </div>
-        <article id="chapter-text" class="reader"></article>
-      </div>
-    </section>
+      </section>
 
-    <footer>Hecho con ❤ para Moka x Chanelle — Starter</footer>
-  </div>
+      <footer>Hecho con ❤ para Moka x Chanelle — Starter</footer>
+    </div>
 
-  <script type="module" src="./js/app.js"></script>
-</body>
+    <script type="module" src="./js/app.js"></script>
+  </body>
 </html>
