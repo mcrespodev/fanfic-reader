@@ -1,0 +1,154 @@
+/*
+  Fanfic Reader – style.css
+  Nota: Puedes incluir Bootstrap para reducir estilos repetitivos.
+  (En index.html agrega, idealmente antes de este archivo):
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+*/
+
+:root{
+  --bg: #0b0b0e;
+  --fg: #e7e7ea;
+  --muted: #a3a3ad;
+  --card: #14141a;
+  --border: #1f1f27;
+  --accent: #6ea8fe; /* tono bootstrap primary */
+  --accent-2: #9eeaf9; /* info-like */
+  --danger: #f18f8f;
+  --ok: #6ed6a4;
+  --shadow: 0 10px 30px rgba(0,0,0,.35);
+  --radius: 16px;
+  --space: 16px;
+  --maxw: 72ch;
+  --font: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+}
+
+/* Tema claro opcional via body.theme-light */
+body.theme-light{
+  --bg: #f7f7fb;
+  --fg: #15151a;
+  --muted: #5a5a66;
+  --card: #ffffff;
+  --border: #e6e6ef;
+  --accent: #0d6efd;
+  --accent-2: #0dcaf0;
+  --danger: #dc3545;
+  --ok: #198754;
+  --shadow: 0 10px 30px rgba(0,0,0,.08);
+}
+
+/* Auto modo según prefers-color-scheme si body.theme-auto está presente */
+@media (prefers-color-scheme: light){
+  body.theme-auto{
+    --bg: #f7f7fb;
+    --fg: #15151a;
+    --muted: #5a5a66;
+    --card: #ffffff;
+    --border: #e6e6ef;
+    --accent: #0d6efd;
+    --accent-2: #0dcaf0;
+    --danger: #dc3545;
+    --ok: #198754;
+    --shadow: 0 10px 30px rgba(0,0,0,.08);
+  }
+}
+
+/* Reset mínimo */
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0; background:var(--bg); color:var(--fg); font: 16px/1.6 var(--font);
+  -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
+}
+img{max-width:100%; display:block}
+button,input,select{font:inherit}
+
+/* Topbar */
+.topbar{
+  position:sticky; top:0; z-index:50;
+  background:var(--card); border-bottom:1px solid var(--border);
+  display:flex; align-items:center; gap:12px; padding:10px 16px;
+  box-shadow: var(--shadow);
+}
+.app-title{font-size:1.125rem; margin:0; letter-spacing:.3px}
+.topbar-actions{margin-left:auto; display:flex; gap:8px}
+
+/* Layout principal */
+.layout{display:grid; grid-template-columns: 280px 1fr; min-height: calc(100vh - 64px)}
+.sidebar{
+  border-right:1px solid var(--border); background:var(--card);
+  display:flex; flex-direction:column; min-height:0;
+}
+.sidebar-header{display:flex; align-items:center; justify-content:space-between; gap:8px; padding:12px; border-bottom:1px solid var(--border)}
+.sidebar-tools{display:flex; gap:8px; align-items:center}
+#quickFilter{width:100%; padding:8px 10px; border:1px solid var(--border); background:transparent; color:var(--fg); border-radius:10px}
+.sidebar-footer{padding:12px; border-top:1px solid var(--border)}
+
+.chapters{padding:8px; display:grid; gap:8px; align-content:start; overflow:auto}
+.chapter-item{
+  display:grid; grid-template-columns: 56px 1fr; gap:10px; align-items:center;
+  padding:8px; background:transparent; border:1px solid var(--border); border-radius:12px; color:inherit; text-align:left; cursor:pointer;
+}
+.chapter-item:hover{border-color:var(--accent)}
+.chapter-thumb{width:56px; height:56px; object-fit:cover; border-radius:10px}
+.chapter-title{font-weight:600}
+
+.reader{min-width:0; padding:20px; display:flex; flex-direction:column; gap:16px}
+.chapter{background:var(--card); border:1px solid var(--border); border-radius:var(--radius); box-shadow: var(--shadow)}
+.chapter-header{display:flex; align-items:center; justify-content:space-between; gap:12px; padding:16px; border-bottom:1px solid var(--border)}
+.chapter-meta{display:flex; gap:14px; align-items:center}
+.chapter-cover{width:72px; height:72px; object-fit:cover; border-radius:12px; background:#0001}
+.chapter-headings h2{margin:0}
+.chapter-code{margin:2px 0 0; color:var(--muted); font-size:.9rem}
+.chapter-controls{display:flex; gap:8px}
+
+.chapter-content{padding:24px; max-width:var(--maxw); margin: 0 auto}
+.chapter-content p{margin: 0 0 1em}
+.placeholder{opacity:.7; text-align:center}
+
+.progress-wrap{height:6px; background:transparent; border-top:1px solid var(--border)}
+.progress-bar{height:6px; width:0; background:var(--accent); transition: width .2s ease}
+
+/* Audio */
+.audio-player{display:grid; gap:10px; padding:16px; border-top:1px solid var(--border); background:var(--card); border-radius:0 0 var(--radius) var(--radius)}
+.audio-info{display:flex; align-items:center; gap:10px}
+.now-playing{color:var(--muted)}
+.audio-controls{display:grid; gap:8px}
+.audio-times{display:flex; justify-content:space-between; font-variant-numeric: tabular-nums; color:var(--muted)}
+#audioSeek{width:100%}
+
+/* Botones (inspirados en Bootstrap) */
+.icon-btn, .text-btn, .primary-btn, .secondary-btn{
+  border:1px solid var(--border); background:var(--card); color:var(--fg);
+  padding:8px 12px; border-radius:10px; cursor:pointer; transition: transform .05s ease, border-color .15s ease, background-color .2s ease;
+}
+.icon-btn{padding:6px 10px}
+.icon-btn:hover, .text-btn:hover, .secondary-btn:hover{border-color:var(--accent)}
+.primary-btn{background: var(--accent); color:#0b1420; border-color: transparent}
+.primary-btn:disabled{filter:grayscale(.4); opacity:.6}
+.primary-btn:hover{filter:brightness(1.03)}
+.secondary-btn{background: transparent}
+.text-btn{background: transparent; border-color: transparent; color: var(--muted)}
+.text-btn:hover{color: var(--fg)}
+button:active{transform: translateY(1px)}
+
+/* Diálogos */
+.dialog::backdrop{background: rgba(0,0,0,.6)}
+.dialog{border:1px solid var(--border); border-radius:16px; background:var(--card); color:var(--fg); box-shadow: var(--shadow); padding:0}
+.dialog-body{padding:16px; display:grid; gap:14px}
+.dialog-actions{display:flex; justify-content:flex-end; gap:8px}
+.setting{border:1px solid var(--border); border-radius:12px; padding:12px}
+.setting legend{padding:0 6px}
+
+/* Responsivo */
+@media (max-width: 1000px){
+  .layout{grid-template-columns: 1fr}
+  .sidebar{position:fixed; inset:64px 0 auto 0; transform: translateX(-100%); transition: transform .25s ease; max-height: calc(100vh - 64px)}
+  .sidebar.open{transform: translateX(0)}
+  .chapter-header{flex-direction:column; align-items:flex-start}
+}
+
+/* Accesibilidad */
+:focus-visible{outline: 2px solid var(--accent); outline-offset: 2px}
+[aria-live]{min-height:1em}
+.noscript{padding:10px 16px; background: #ffecb5; color:#664d03; border-bottom:1px solid #ffe69c}

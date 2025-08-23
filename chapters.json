@@ -1,16 +1,9 @@
 [
   {
     "code": "C1-P1",
-    "title": "¿Quién cayó primero?",
-    "song": "Ending Scene – IU",
+    "title": "Capítulo 1 - Donde las líneas se cruzan",
+    "song": "assets/audio/bad_boy.mp3",
     "image": "assets/img/cap1.jpg",
     "textFile": "texts/Capitulo_1.txt"
-  },
-  {
-    "code": "C2-P1",
-    "title": "Como una dona",
-    "song": "Doughnut – TWICE",
-    "image": "assets/img/cap2.jpg",
-    "textFile": "texts/Capitulo_2.txt"
   }
 ]

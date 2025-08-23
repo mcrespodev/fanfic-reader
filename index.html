@@ -1,46 +1,207 @@
 <!DOCTYPE html>
 <html lang="es">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Lector Fanfic</title>
-    <link rel="stylesheet" href="./css/styles.css" />
-  </head>
-  <body>
-    <div class="container">
-      <header>
-        <h1>📖 Lector de Fanfic</h1>
-        <input
-          id="q"
-          class="search"
-          type="search"
-          placeholder="Buscar por título, canción o código..."
-        />
-      </header>
 
-      <main id="home">
-        <section class="grid" id="list"></section>
-      </main>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Lector Fanfic</title>
+  <meta name="description" content="Lector web para fanfic con capítulos, audio y modo oscuro." />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <link rel="preload" href="/css/style.css" as="style" />
+  <link rel="stylesheet" href="/css/style.css" />
+  <!-- Tipografías opcionales -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+</head>
 
-      <section id="reader" class="hidden">
-        <div class="card">
-          <img id="chapter-cover" alt="cover" />
-          <h2 id="chapter-title">Título</h2>
-          <p id="chapter-song" class="meta"></p>
-          <div class="controls">
-            <button id="back" class="secondary">Volver</button>
-            <button id="prev" class="secondary">Previous</button>
-            <button id="next">Siguiente</button>
-            <button id="play-audio" class="secondary">Reproducir música</button>
-            <audio id="bg-audio" preload="none"></audio>
+<body class="theme-auto">
+  <noscript>
+    <div class="noscript">
+      Este lector requiere JavaScript para funcionar correctamente.
+    </div>
+  </noscript>
+
+  <!-- ======= Barra superior ======= -->
+  <header class="topbar" role="banner">
+    <button id="btnMenu" class="icon-btn" aria-label="Abrir/cerrar menú" aria-expanded="false" aria-controls="sidebar">
+      ☰
+    </button>
+    <h1 class="app-title">Lector de Fanfic</h1>
+
+    <div class="topbar-actions">
+      <button id="btnSearch" class="icon-btn" aria-haspopup="dialog" aria-controls="searchDialog"
+        aria-label="Buscar capítulos">
+        🔎
+      </button>
+      <button id="btnTheme" class="icon-btn" aria-label="Cambiar tema" title="Tema">
+        🌓
+      </button>
+      <button id="btnSettings" class="icon-btn" aria-haspopup="dialog" aria-controls="settingsDialog"
+        aria-label="Ajustes">
+        ⚙️
+      </button>
+    </div>
+  </header>
+
+  <!-- ======= Contenedor principal ======= -->
+  <div class="layout">
+    <!-- ======= Sidebar: lista de capítulos ======= -->
+    <aside id="sidebar" class="sidebar" role="navigation" aria-label="Lista de capítulos">
+      <div class="sidebar-header">
+        <strong>Capítulos</strong>
+        <div class="sidebar-tools">
+          <input id="quickFilter" type="search" placeholder="Filtrar…" aria-label="Filtrar capítulos" />
+          <button id="btnClearFilter" class="text-btn" title="Limpiar filtro" aria-label="Limpiar filtro">
+            ✕
+          </button>
+        </div>
+      </div>
+
+      <nav id="chaptersList" class="chapters">
+        <!-- Se llena dinámicamente con script.js usando chapters.json -->
+        <!-- Ejemplo de item (plantilla para referencia):
+        <button class="chapter-item" data-code="cap1">
+          <img src="/assets/img/cap1.jpg" alt="Portada Capítulo 1" class="chapter-thumb" />
+          <span class="chapter-title">Capítulo 1 – Título</span>
+        </button>
+        -->
+      </nav>
+
+      <footer class="sidebar-footer">
+        <button id="btnResume" class="primary-btn" title="Continuar donde quedaste">
+          ⏳ Continuar
+        </button>
+      </footer>
+    </aside>
+
+    <!-- ======= Área de lectura ======= -->
+    <main id="reader" class="reader" role="main">
+      <article class="chapter">
+        <header class="chapter-header">
+          <div class="chapter-meta">
+            <img id="chapterCover" class="chapter-cover" alt="Portada del capítulo" />
+            <div class="chapter-headings">
+              <h2 id="chapterTitle" class="chapter-title">
+                Selecciona un capítulo
+              </h2>
+              <p id="chapterCode" class="chapter-code" aria-live="polite"></p>
+            </div>
           </div>
-          <article id="chapter-text" class="reader"></article>
+
+          <div class="chapter-controls">
+            <button id="btnPrev" class="secondary-btn" disabled>
+              ← Anterior
+            </button>
+            <button id="btnNext" class="secondary-btn" disabled>
+              Siguiente →
+            </button>
+          </div>
+        </header>
+
+        <section id="chapterContent" class="chapter-content" aria-live="polite">
+          <div class="placeholder">
+            <p>Elige un capítulo de la lista para comenzar a leer.</p>
+          </div>
+        </section>
+
+        <!-- Barra de progreso de lectura opcional -->
+        <div class="progress-wrap" aria-hidden="true">
+          <div class="progress-bar" id="readingProgress"></div>
+        </div>
+      </article>
+
+      <!-- ======= Controles de audio ======= -->
+      <section class="audio-player" aria-label="Reproductor del capítulo">
+        <div class="audio-info">
+          <button id="btnAudio" class="primary-btn" disabled>
+            Reproducir
+          </button>
+          <span id="audioNowPlaying" class="now-playing" aria-live="polite"></span>
+        </div>
+
+        <div class="audio-controls">
+          <input id="audioSeek" type="range" min="0" max="100" value="0" step="0.1"
+            aria-label="Progreso de la canción" />
+          <div class="audio-times">
+            <time id="audioCurrent">0:00</time>
+            <time id="audioDuration">0:00</time>
+          </div>
+          <button id="btnMute" class="icon-btn" aria-label="Silenciar">
+            🔇
+          </button>
+          <input id="audioVolume" type="range" min="0" max="1" step="0.01" value="1" aria-label="Volumen" />
         </div>
       </section>
+    </main>
+  </div>
 
-      <footer>Hecho con ❤ para Moka x Chanelle — Starter</footer>
-    </div>
+  <!-- ======= Diálogo de búsqueda ======= -->
+  <dialog id="searchDialog" class="dialog">
+    <form method="dialog" class="dialog-body">
+      <h3>Buscar</h3>
+      <input id="searchInput" type="search" placeholder="Título, código…" aria-label="Término de búsqueda" />
+      <div class="dialog-actions">
+        <button value="cancel" class="secondary-btn">Cancelar</button>
+        <button id="searchSubmit" class="primary-btn" value="search">
+          Buscar
+        </button>
+      </div>
+    </form>
+  </dialog>
 
-    <script type="module" src="./js/app.js"></script>
-  </body>
+  <!-- ======= Diálogo de ajustes ======= -->
+  <dialog id="settingsDialog" class="dialog">
+    <form method="dialog" class="dialog-body">
+      <h3>Ajustes</h3>
+
+      <fieldset class="setting">
+        <legend>Tema</legend>
+        <label><input type="radio" name="theme" value="light" /> Claro</label>
+        <label><input type="radio" name="theme" value="dark" /> Oscuro</label>
+        <label><input type="radio" name="theme" value="auto" checked />
+          Automático</label>
+      </fieldset>
+
+      <fieldset class="setting">
+        <legend>Texto</legend>
+        <label>
+          Tamaño
+          <input id="fontSize" type="range" min="14" max="22" step="1" value="16" />
+        </label>
+        <label>
+          Ancho de columna
+          <input id="contentWidth" type="range" min="560" max="880" step="10" value="720" />
+        </label>
+      </fieldset>
+
+      <fieldset class="setting">
+        <legend>Audio</legend>
+        <label><input id="toggleFade" type="checkbox" checked /> Fundido de
+          entrada/salida</label>
+        <label><input id="autoplay" type="checkbox" /> Autoreproducir al abrir
+          capítulo</label>
+      </fieldset>
+
+      <div class="dialog-actions">
+        <button value="cancel" class="secondary-btn">Cerrar</button>
+        <button id="settingsSave" class="primary-btn" value="save">
+          Guardar
+        </button>
+      </div>
+    </form>
+  </dialog>
+
+  <!-- ======= Plantillas (para clonar desde JS) ======= -->
+  <template id="tplChapterItem">
+    <button class="chapter-item">
+      <img class="chapter-thumb" alt="Portada" />
+      <span class="chapter-title"></span>
+    </button>
+  </template>
+
+  <script src="/js/script.js" defer></script>
+</body>
+
 </html>
