@@ -2,8 +2,17 @@
   {
     "code": "C1-P1",
     "title": "Capítulo 1 - Donde las líneas se cruzan",
+    "titleShort": "Capítulo 1",
     "song": "assets/audio/bad_boy.mp3",
     "image": "assets/img/cap1.jpg",
-    "textFile": "texts/Capitulo_1.txt"
+    "textFile": "texts/cap1.txt"
+  },
+    {
+    "code": "C2-P1",
+    "title": "Capítulo 2 - 2/22",
+    "titleShort": "Capítulo 2",
+    "song": "assets/audio/lucid_dream.mp3",
+    "image": "assets/img/cap2.jpg",
+    "textFile": "texts/cap2.txt"
   }
 ]

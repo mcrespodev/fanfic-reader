@@ -1,0 +1,3 @@
+Este es el segundo capítulo de prueba.
+
+Recuerda que cada doble salto de línea se convierte en un párrafo.
