@@ -132,11 +132,16 @@ document.addEventListener("DOMContentLoaded", () => {
       // PDF (con PDF.js)
       const pdfFrame = document.getElementById("pdfFrame");
       if (chap.pdfPath) {
-        const viewer = `pdfjs/web/viewer.html#file=${encodeURIComponent(
-          chap.pdfPath
-        )}`;
-        console.log(pdfFrame.src);
-        pdfFrame.src = viewer;
+        const base = document.baseURI; // funciona igual en localhost y en GH Pages
+        const viewerAbs = new URL("pdfjs/web/viewer.html", base).toString();
+        const pdfAbs = new URL(chap.pdfPath, base).toString();
+
+        els.pdfFrame.src = `${viewerAbs}?file=${encodeURIComponent(pdfAbs)}`;
+
+        // const viewer = `pdfjs/web/viewer.html#file=${encodeURIComponent(
+        //   chap.pdfPath
+        // )}`;
+        // pdfFrame.src = viewer;
       } else {
         pdfFrame.removeAttribute("src"); // evita "undefined"
       }
@@ -148,7 +153,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Audio
     if (chap.audioPath) {
-      setAudioSource(chap.audioPath, chap.title);
+      setAudioSource(chap.audioPath, chap.titleSong);
     } else {
       clearAudio();
     }
@@ -212,8 +217,8 @@ document.addEventListener("DOMContentLoaded", () => {
     a.src = src;
     a.currentTime = 0;
     els.audioNowPlaying.textContent = title
-      ? `Reproduciendo: ${title}`
-      : "Reproduciendo";
+      ? `${title}`
+      : "|";
     disablePlayer(false);
     updatePlayButton(false);
   }
