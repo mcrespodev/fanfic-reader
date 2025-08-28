@@ -166,3 +166,27 @@ button:active{transform: translateY(1px)}
   flex-direction: column;
   padding: 24px;
 }
+
+:root { --player-h: 64px; }
+body { padding-bottom: calc(var(--player-h) + env(safe-area-inset-bottom)); }
+.player-bar { min-height: var(--player-h); padding-bottom: env(safe-area-inset-bottom); }
+
+/* Centro perfectamente centrado */
+.player-bar .container-fluid { position: relative; }
+.player-center {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(90vw, 560px); /* hasta 90% del ancho de pantalla, máx 560px */
+}
+
+.player-center .form-range {
+  width: 100%;   /* que el slider se adapte al ancho */
+}
+.player-right  .form-range { width: 120px; }
+
+/* Responsive: en pantallas muy pequeñas, oculta el centro para no saturar */
+@media (max-width: 575.98px){
+  .player-center { display: none !important; }
+  .player-right .form-range { width: 90px; }
+}

@@ -39,31 +39,38 @@
         MauFic
       </span>
 
-      <!-- Reproductor (o botón de ajustes a la derecha) -->
-      <div class="d-flex align-items-center">
-        <div class="d-flex align-items-center gap-2">
-          <button id="btnAudio" class="btn btn-primary btn-sm" aria-label="Reproducir / Pausar" disabled>▶</button>
-          <span id="audioNowPlaying" class="small text-muted" aria-live="polite">Sin canción</span>
-          <input id="audioVolume" type="range" class="form-range w-50" min="0" max="1" step="0.01" value="0.2"
-            aria-label="Volumen" />
-          <div class="dropdown">
-            <button class="btn btn-outline-secondary btn-sm dropdown-toggle" type="button" id="playerDropdown"
-              data-bs-toggle="dropdown" aria-expanded="false" aria-label="Mostrar controles del reproductor" hidden>
-            </button>
-            <div class="dropdown-menu dropdown-menu-end p-3" aria-labelledby="playerDropdown" style="min-width: 320px;">
-              <label class="form-label mb-1 small" for="audioSeek">Progreso</label>
-              <input id="audioSeek" type="range" class="form-range" min="0" max="100" step="0.1" />
-              <div class="d-flex align-items-center gap-2 mt-2">
-                <button id="btnMute" class="btn btn-outline-secondary btn-sm" aria-label="Silenciar">🔇</button>
-              </div>
-              <div class="d-flex justify-content-between small text-muted mt-1">
-                <time id="audioCurrent">0:00</time>
-                <time id="audioDuration">0:00</time>
-              </div>
-            </div>
-          </div>
+      <!-- Botón menú (abre sidebar) -->
+      <button id="btnMenu" class="btn btn-outline-secondary me-2" type="button" data-bs-toggle="offcanvas"
+        data-bs-target="#sidebar" aria-controls="sidebar" aria-label="Menú">
+        Modo oscuro
+      </button>
+
+  </nav>
+
+  <nav class="navbar navbar-expand bg-body-tertiary border-top fixed-bottom player-bar">
+    <div class="container-fluid position-relative align-items-center">
+
+      <!-- IZQUIERDA: play + now playing -->
+      <div class="player-left d-flex align-items-center gap-2">
+        <div id="audioNowPlaying" class="text-truncate small" style="max-width: 36vw;">Sin canción</div>
+      </div>
+
+      <!-- CENTRO: progreso (centrado absoluto) -->
+      <div class="player-center d-flex align-items-center gap-2">
+        <button id="btnAudio" class="btn btn-primary btn-sm" aria-label="Reproducir / Pausar" disabled>▶</button>
+        <input id="audioSeek" type="range" class="form-range my-0" min="0" max="100" step="0.1" />
+        <div class="d-flex align-items-center gap-1 small text-muted">
+          <time id="audioCurrent">0:00</time><span>/</span><time id="audioDuration">0:00</time>
         </div>
       </div>
+
+      <!-- DERECHA: mute + volumen -->
+      <div class="player-right d-flex align-items-center gap-2 ms-auto">
+        <button id="btnMute" class="btn btn-outline-secondary btn-sm" aria-label="Silenciar" disabled>🔇</button>
+        <input id="audioVolume" type="range" class="form-range my-0" min="0" max="1" step="0.01" value="1" />
+      </div>
+
+    </div>
   </nav>
 
   <!-- ======= Contenedor principal ======= -->
