@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="es">
+
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -17,15 +18,18 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
 </head>
+
 <body class="theme-auto d-flex flex-column min-vh-100">
   <noscript>
-    <div class="noscript alert alert-warning text-center">Este lector requiere JavaScript para funcionar correctamente.</div>
+    <div class="noscript alert alert-warning text-center">Este lector requiere JavaScript para funcionar correctamente.
+    </div>
   </noscript>
 
   <!-- ======= Barra superior ======= -->
   <header class="topbar d-flex align-items-center justify-content-between" role="banner">
     <div class="d-flex align-items-center gap-2">
-      <button id="btnMenu" class="btn btn-outline-secondary" aria-label="Abrir/cerrar menú" aria-expanded="false" aria-controls="sidebar">☰</button>
+      <button id="btnMenu" class="btn btn-outline-secondary" aria-label="Abrir/cerrar menú" aria-expanded="false"
+        aria-controls="sidebar">☰</button>
       <h1 class="app-title h5 m-0">Lector de Fanfic</h1>
     </div>
 
@@ -35,7 +39,8 @@
         <button id="btnAudio" class="btn btn-primary btn-sm" aria-label="Reproducir / Pausar" disabled>▶</button>
         <span id="audioNowPlaying" class="small text-muted" aria-live="polite">Sin canción</span>
         <div class="dropdown">
-          <button class="btn btn-outline-secondary btn-sm dropdown-toggle" type="button" id="playerDropdown" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Mostrar controles del reproductor">
+          <button class="btn btn-outline-secondary btn-sm dropdown-toggle" type="button" id="playerDropdown"
+            data-bs-toggle="dropdown" aria-expanded="false" aria-label="Mostrar controles del reproductor">
             Controles
           </button>
           <div class="dropdown-menu dropdown-menu-end p-3" aria-labelledby="playerDropdown" style="min-width: 320px;">
@@ -43,7 +48,8 @@
             <input id="audioSeek" type="range" class="form-range" min="0" max="100" step="0.1" />
             <div class="d-flex align-items-center gap-2 mt-2">
               <button id="btnMute" class="btn btn-outline-secondary btn-sm" aria-label="Silenciar">🔇</button>
-              <input id="audioVolume" type="range" class="form-range flex-grow-1" min="0" max="1" step="0.01" value="1" aria-label="Volumen" />
+              <input id="audioVolume" type="range" class="form-range flex-grow-1" min="0" max="1" step="0.01" value="1"
+                aria-label="Volumen" />
             </div>
             <div class="d-flex justify-content-between small text-muted mt-1">
               <time id="audioCurrent">0:00</time>
@@ -55,7 +61,8 @@
 
       <!-- Botones de tema y ajustes -->
       <button id="btnTheme" class="btn btn-outline-secondary" aria-label="Cambiar tema" title="Tema">🌓</button>
-      <button id="btnSettings" class="btn btn-outline-secondary" aria-haspopup="dialog" aria-controls="settingsDialog" aria-label="Ajustes">⚙️</button>
+      <button id="btnSettings" class="btn btn-outline-secondary" aria-haspopup="dialog" aria-controls="settingsDialog"
+        aria-label="Ajustes">⚙️</button>
     </div>
   </header>
 
@@ -66,8 +73,10 @@
       <div class="sidebar-header d-flex align-items-center justify-content-between p-2 border-bottom">
         <strong>Capítulos</strong>
         <div class="sidebar-tools d-flex gap-2">
-          <input id="quickFilter" type="search" class="form-control form-control-sm" placeholder="Filtrar…" aria-label="Filtrar capítulos" />
-          <button id="btnClearFilter" class="btn btn-sm btn-outline-secondary" title="Limpiar filtro" aria-label="Limpiar filtro">✕</button>
+          <input id="quickFilter" type="search" class="form-control form-control-sm" placeholder="Filtrar…"
+            aria-label="Filtrar capítulos" />
+          <button id="btnClearFilter" class="btn btn-sm btn-outline-secondary" title="Limpiar filtro"
+            aria-label="Limpiar filtro">✕</button>
         </div>
       </div>
 
@@ -76,49 +85,40 @@
       </nav>
 
       <footer class="sidebar-footer p-2 border-top">
+        <button id="btnPrev" class="btn btn-primary w-100" title="Continuar donde quedaste">⏳ Previo</button>
         <button id="btnResume" class="btn btn-primary w-100" title="Continuar donde quedaste">⏳ Continuar</button>
+        <button id="btnNext" class="btn btn-primary w-100" title="Continuar donde quedaste">⏳ Siguiente</button>
+
       </footer>
     </aside>
 
     <!-- ======= Área de lectura ======= -->
-    <main id="reader" class="reader p-3" role="main">
-      <article class="chapter card shadow-sm">
-        <header class="chapter-header card-header d-flex flex-wrap align-items-center justify-content-between gap-2">
-          <div class="chapter-meta d-flex align-items-center gap-3">
-            <img id="chapterCover" class="chapter-cover rounded" alt="Portada del capítulo" width="72" height="72" />
-            <div class="chapter-headings">
-              <h2 id="chapterTitle" class="h5 m-0">Selecciona un capítulo</h2>
-              <p id="chapterCode" class="chapter-code small text-muted" aria-live="polite"></p>
-            </div>
-          </div>
+    <section id="chapterContent" class="chapterContent card-body">
+      <div class="mb-3">
+        <img id="chapterCover" class="chapter-cover rounded d-block" alt="Portada" />
+        <h2 id="chapterTitle" hidden>...</h2>
+        <p id="chapterCode" hidden></p>
+      </div>
 
-          <div class="chapter-controls d-flex gap-2">
-            <button id="btnPrev" class="btn btn-outline-secondary" disabled>← Anterior</button>
-            <button id="btnNext" class="btn btn-outline-secondary" disabled>Siguiente →</button>
-          </div>
-        </header>
+      <iframe id="pdfFrame" title="Lector PDF (PDF.js)" src="" loading="lazy"
+        style="border:1px solid var(--border)"></iframe>
 
-        <section id="chapterContent" class="chapter-content card-body" aria-live="polite">
-          <div class="placeholder text-center text-muted">
-            <p>Elige un capítulo de la lista para comenzar a leer.</p>
-          </div>
-        </section>
+    </section>
 
-        <!-- Barra de progreso -->
-        <div class="progress-wrap">
-          <div class="progress">
-            <div class="progress-bar" id="readingProgress" style="width:0%"></div>
-          </div>
-        </div>
-      </article>
-    </main>
+    <!-- Barra de progreso -->
+    <div class="progress-wrap">
+      <div class="progress">
+        <div class="progress-bar" id="readingProgress" style="width:0%"></div>
+      </div>
+    </div>
   </div>
 
   <!-- ======= Diálogo de búsqueda ======= -->
   <dialog id="searchDialog" class="dialog">
     <form method="dialog" class="dialog-body">
       <h3>Buscar</h3>
-      <input id="searchInput" type="search" class="form-control" placeholder="Título, código…" aria-label="Término de búsqueda" />
+      <input id="searchInput" type="search" class="form-control" placeholder="Título, código…"
+        aria-label="Término de búsqueda" />
       <div class="dialog-actions d-flex justify-content-end gap-2 mt-2">
         <button value="cancel" class="btn btn-secondary">Cancelar</button>
         <button id="searchSubmit" class="btn btn-primary" value="search">Buscar</button>
@@ -186,4 +186,5 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" defer></script>
   <script src="/js/script.js" defer></script>
 </body>
+
 </html>

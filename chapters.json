@@ -3,16 +3,18 @@
     "code": "C1-P1",
     "title": "Capítulo 1 - Donde las líneas se cruzan",
     "titleShort": "Capítulo 1",
-    "song": "assets/audio/bad_boy.mp3",
-    "image": "assets/img/cap1.jpg",
-    "textFile": "texts/cap1.txt"
+    "song": "bad-boy.mp3",
+    "image": "cap1.jpg",
+    "icon": "cap1.png",
+    "pdf": "cap1.pdf"
   },
     {
     "code": "C2-P1",
     "title": "Capítulo 2 - 2/22",
     "titleShort": "Capítulo 2",
-    "song": "assets/audio/lucid_dream.mp3",
-    "image": "assets/img/cap2.jpg",
-    "textFile": "texts/cap2.txt"
+    "song": "lucid-dream.mp3",
+    "image": "cap2.jpg",
+    "icon": "cap2.png",
+    "pdf": "cap2.pdf"
   }
 ]

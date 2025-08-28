@@ -152,3 +152,17 @@ button:active{transform: translateY(1px)}
 :focus-visible{outline: 2px solid var(--accent); outline-offset: 2px}
 [aria-live]{min-height:1em}
 .noscript{padding:10px 16px; background: #ffecb5; color:#664d03; border-bottom:1px solid #ffe69c}
+
+#pdfFrame {
+  width: 100%;
+  height: calc(100vh - 100px); /* resta la altura de tu navbar o header */
+  border: none;
+}
+
+#chapterContent {
+  flex: 1;                  /* ocupa todo el espacio restante */
+  overflow: hidden;         /* evita barras dobles */
+  display: flex;
+  flex-direction: column;
+  padding: 24px;
+}
