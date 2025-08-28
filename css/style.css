@@ -177,12 +177,11 @@ body { padding-bottom: calc(var(--player-h) + env(safe-area-inset-bottom)); }
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
-  width: min(90vw, 560px); /* hasta 90% del ancho de pantalla, máx 560px */
+  width: min(560px, 70vw); /* ancho máx razonable y responsive */
 }
 
-.player-center .form-range {
-  width: 100%;   /* que el slider se adapte al ancho */
-}
+/* Tamaños de sliders */
+.player-center .form-range { width: min(420px, 50vw); }
 .player-right  .form-range { width: 120px; }
 
 /* Responsive: en pantallas muy pequeñas, oculta el centro para no saturar */

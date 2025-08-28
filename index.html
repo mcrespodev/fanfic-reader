@@ -52,12 +52,12 @@
 
       <!-- IZQUIERDA: play + now playing -->
       <div class="player-left d-flex align-items-center gap-2">
+        <button id="btnAudio" class="btn btn-primary btn-sm" aria-label="Reproducir / Pausar" disabled>▶</button>
         <div id="audioNowPlaying" class="text-truncate small" style="max-width: 36vw;">Sin canción</div>
       </div>
 
       <!-- CENTRO: progreso (centrado absoluto) -->
       <div class="player-center d-flex align-items-center gap-2">
-        <button id="btnAudio" class="btn btn-primary btn-sm" aria-label="Reproducir / Pausar" disabled>▶</button>
         <input id="audioSeek" type="range" class="form-range my-0" min="0" max="100" step="0.1" />
         <div class="d-flex align-items-center gap-1 small text-muted">
           <time id="audioCurrent">0:00</time><span>/</span><time id="audioDuration">0:00</time>
