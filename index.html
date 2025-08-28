@@ -10,6 +10,9 @@
   <!-- Bootstrap CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
   <!-- CSS propio -->
   <link rel="stylesheet" href="css/style.css" />
 
@@ -31,7 +34,7 @@
       <!-- Botón menú (abre sidebar) -->
       <button id="btnMenu" class="btn btn-outline-secondary me-2" type="button" data-bs-toggle="offcanvas"
         data-bs-target="#sidebar" aria-controls="sidebar" aria-label="Menú">
-        ☰ Capítulos
+        <i class="bi bi-list fs-6"></i> Capítulos
       </button>
 
       <!-- Título centrado -->
@@ -42,7 +45,7 @@
       <!-- Botón menú (abre sidebar) -->
       <button id="btnMenu" class="btn btn-outline-secondary me-2" type="button" data-bs-toggle="offcanvas"
         data-bs-target="#sidebar" aria-controls="sidebar" aria-label="Menú">
-        Modo oscuro
+        <i class="bi bi-moon-stars-fill"></i> Modo oscuro
       </button>
 
   </nav>
@@ -52,13 +55,15 @@
 
       <!-- IZQUIERDA: play + now playing -->
       <div class="player-left d-flex align-items-center gap-2">
-        <button id="btnAudio" class="btn btn-primary btn-sm" aria-label="Reproducir / Pausar" disabled>▶</button>
+        <button id="btnAudio" class="btn btn-primary btn-sm" aria-label="Reproducir / Pausar" disabled>
+          <i class="bi bi-play-fill"></i>
+        </button>
         <div id="audioNowPlaying" class="text-truncate small" style="max-width: 36vw;">Sin canción</div>
       </div>
 
       <!-- CENTRO: progreso (centrado absoluto) -->
       <div class="player-center d-flex align-items-center gap-2">
-        <input id="audioSeek" type="range" class="form-range my-0" min="0" max="100" step="0.1" />
+        <input id="audioSeek" type="range" class="form-range my-0" min="0" max="100" step="0.1" value="0"/>
         <div class="d-flex align-items-center gap-1 small text-muted">
           <time id="audioCurrent">0:00</time><span>/</span><time id="audioDuration">0:00</time>
         </div>
@@ -66,8 +71,8 @@
 
       <!-- DERECHA: mute + volumen -->
       <div class="player-right d-flex align-items-center gap-2 ms-auto">
-        <button id="btnMute" class="btn btn-outline-secondary btn-sm" aria-label="Silenciar" disabled>🔇</button>
-        <input id="audioVolume" type="range" class="form-range my-0" min="0" max="1" step="0.01" value="1" />
+        <button id="btnMute" class="btn btn-outline-secondary btn-sm" aria-label="Silenciar" disabled><i class="bi bi-volume-up-fill fs-6"></i></button>
+        <input id="audioVolume" type="range" class="form-range my-0" min="0" max="1" step="0.01" value="0.2" />
       </div>
 
     </div>
@@ -89,9 +94,10 @@
         </ul>
       </div>
       <footer class="sidebar-footer p-2 border-top">
-        <button id="btnPrev" class="btn btn-primary w-100" title="Continuar donde quedaste">⏳ Previo</button>
-        <button id="btnResume" class="btn btn-primary w-100" title="Continuar donde quedaste">⏳ Continuar</button>
-        <button id="btnNext" class="btn btn-primary w-100" title="Continuar donde quedaste">⏳ Siguiente</button>
+        <button id="btnPrev" class="btn btn-primary w-100" title="Continuar donde quedaste" hidden>⏳ Previo</button>
+        <button id="btnResume" class="btn btn-primary w-100" title="Continuar donde quedaste" hidden>⏳
+          Continuar</button>
+        <button id="btnNext" class="btn btn-primary w-100" title="Continuar donde quedaste" hidden>⏳ Siguiente</button>
       </footer>
     </div>
 

@@ -205,7 +205,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     els.btnMute.addEventListener("click", () => {
       a.muted = !a.muted;
-      els.btnMute.textContent = a.muted ? "🔈" : "🔇";
+      els.btnMute.innerHTML = a.muted ? '<i class="bi bi-volume-mute-fill fs-6"></i>' : '<i class="bi bi-volume-up-fill fs-6"></i>';
     });
 
     // Estado inicial deshabilitado
@@ -247,7 +247,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function updatePlayButton(isPlaying) {
-    els.btnAudio.textContent = isPlaying ? "⏸" : "▶";
+    els.btnAudio.innerHTML = isPlaying ? '<i class="bi bi-pause-fill"></i>' : '<i class="bi bi-play-fill"></i>';
   }
 
   function disablePlayer(disabled) {
