@@ -11,7 +11,7 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 
   <!-- CSS propio -->
-  <link rel="stylesheet" href="/css/style.css" />
+  <link rel="stylesheet" href="css/style.css" />
 
   <!-- Tipografías opcionales -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -25,72 +25,68 @@
     </div>
   </noscript>
 
-  <!-- ======= Barra superior ======= -->
-  <header class="topbar d-flex align-items-center justify-content-between" role="banner">
-    <div class="d-flex align-items-center gap-2">
-      <button id="btnMenu" class="btn btn-outline-secondary" aria-label="Abrir/cerrar menú" aria-expanded="false"
-        aria-controls="sidebar">☰</button>
-      <h1 class="app-title h5 m-0">Lector de Fanfic</h1>
-    </div>
+  <nav class="navbar navbar-expand bg-body-tertiary">
+    <div class="container-fluid d-flex justify-content-between align-items-center">
 
-    <div class="topbar-actions d-flex align-items-center gap-2">
-      <!-- Player compacto + dropdown (Opción 2) -->
-      <div class="d-flex align-items-center gap-2">
-        <button id="btnAudio" class="btn btn-primary btn-sm" aria-label="Reproducir / Pausar" disabled>▶</button>
-        <span id="audioNowPlaying" class="small text-muted" aria-live="polite">Sin canción</span>
-        <div class="dropdown">
-          <button class="btn btn-outline-secondary btn-sm dropdown-toggle" type="button" id="playerDropdown"
-            data-bs-toggle="dropdown" aria-expanded="false" aria-label="Mostrar controles del reproductor">
-            Controles
-          </button>
-          <div class="dropdown-menu dropdown-menu-end p-3" aria-labelledby="playerDropdown" style="min-width: 320px;">
-            <label class="form-label mb-1 small" for="audioSeek">Progreso</label>
-            <input id="audioSeek" type="range" class="form-range" min="0" max="100" step="0.1" />
-            <div class="d-flex align-items-center gap-2 mt-2">
-              <button id="btnMute" class="btn btn-outline-secondary btn-sm" aria-label="Silenciar">🔇</button>
-              <input id="audioVolume" type="range" class="form-range flex-grow-1" min="0" max="1" step="0.01" value="1"
-                aria-label="Volumen" />
-            </div>
-            <div class="d-flex justify-content-between small text-muted mt-1">
-              <time id="audioCurrent">0:00</time>
-              <time id="audioDuration">0:00</time>
+      <!-- Botón menú (abre sidebar) -->
+      <button id="btnMenu" class="btn btn-outline-secondary me-2" type="button" data-bs-toggle="offcanvas"
+        data-bs-target="#sidebar" aria-controls="sidebar" aria-label="Menú">
+        ☰ Capítulos
+      </button>
+
+      <!-- Título centrado -->
+      <span class="navbar-brand mx-auto fw-bold text-center">
+        Mi Fanfic Reader
+      </span>
+
+      <!-- Reproductor (o botón de ajustes a la derecha) -->
+      <div class="d-flex align-items-center">
+        <div class="d-flex align-items-center gap-2">
+          <button id="btnAudio" class="btn btn-primary btn-sm" aria-label="Reproducir / Pausar" disabled>▶</button>
+          <span id="audioNowPlaying" class="small text-muted" aria-live="polite">Sin canción</span>
+          <input id="audioVolume" type="range" class="form-range w-50" min="0" max="1" step="0.01" value="0.2"
+            aria-label="Volumen" />
+          <div class="dropdown">
+            <button class="btn btn-outline-secondary btn-sm dropdown-toggle" type="button" id="playerDropdown"
+              data-bs-toggle="dropdown" aria-expanded="false" aria-label="Mostrar controles del reproductor" hidden>
+            </button>
+            <div class="dropdown-menu dropdown-menu-end p-3" aria-labelledby="playerDropdown" style="min-width: 320px;">
+              <label class="form-label mb-1 small" for="audioSeek">Progreso</label>
+              <input id="audioSeek" type="range" class="form-range" min="0" max="100" step="0.1" />
+              <div class="d-flex align-items-center gap-2 mt-2">
+                <button id="btnMute" class="btn btn-outline-secondary btn-sm" aria-label="Silenciar">🔇</button>
+              </div>
+              <div class="d-flex justify-content-between small text-muted mt-1">
+                <time id="audioCurrent">0:00</time>
+                <time id="audioDuration">0:00</time>
+              </div>
             </div>
           </div>
         </div>
       </div>
-
-      <!-- Botones de tema y ajustes -->
-      <button id="btnTheme" class="btn btn-outline-secondary" aria-label="Cambiar tema" title="Tema">🌓</button>
-      <button id="btnSettings" class="btn btn-outline-secondary" aria-haspopup="dialog" aria-controls="settingsDialog"
-        aria-label="Ajustes">⚙️</button>
-    </div>
-  </header>
+  </nav>
 
   <!-- ======= Contenedor principal ======= -->
-  <div class="layout flex-grow-1">
+  <div>
     <!-- ======= Sidebar: lista de capítulos ======= -->
-    <aside id="sidebar" class="sidebar" role="navigation" aria-label="Lista de capítulos">
-      <div class="sidebar-header d-flex align-items-center justify-content-between p-2 border-bottom">
-        <strong>Capítulos</strong>
-        <div class="sidebar-tools d-flex gap-2">
-          <input id="quickFilter" type="search" class="form-control form-control-sm" placeholder="Filtrar…"
-            aria-label="Filtrar capítulos" />
-          <button id="btnClearFilter" class="btn btn-sm btn-outline-secondary" title="Limpiar filtro"
-            aria-label="Limpiar filtro">✕</button>
-        </div>
+    <!-- Sidebar como Offcanvas -->
+    <div class="offcanvas offcanvas-start" tabindex="-1" id="sidebar" aria-labelledby="sidebarLabel">
+      <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="sidebarLabel">Capítulos</h5>
+        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Cerrar"></button>
       </div>
-
-      <nav id="chaptersList" class="chapters p-2 overflow-auto">
-        <!-- Se llena dinámicamente con script.js usando chapters.json -->
-      </nav>
-
+      <div class="offcanvas-body p-0">
+        <!-- Tu lista de capítulos -->
+        <ul id="chaptersList" class="list-group list-group-flush">
+          <!-- Items se llenan por script -->
+        </ul>
+      </div>
       <footer class="sidebar-footer p-2 border-top">
         <button id="btnPrev" class="btn btn-primary w-100" title="Continuar donde quedaste">⏳ Previo</button>
         <button id="btnResume" class="btn btn-primary w-100" title="Continuar donde quedaste">⏳ Continuar</button>
         <button id="btnNext" class="btn btn-primary w-100" title="Continuar donde quedaste">⏳ Siguiente</button>
-
       </footer>
-    </aside>
+    </div>
 
     <!-- ======= Área de lectura ======= -->
     <section id="chapterContent" class="chapterContent card-body">
@@ -103,13 +99,6 @@
       <iframe id="pdfFrame" title="Lector PDF (PDF.js)" src="" loading="lazy"
         style="border:1px solid var(--border)"></iframe>
     </section>
-
-    <!-- Barra de progreso -->
-    <div class="progress-wrap">
-      <div class="progress">
-        <div class="progress-bar" id="readingProgress" style="width:0%"></div>
-      </div>
-    </div>
   </div>
 
   <!-- ======= Diálogo de búsqueda ======= -->
