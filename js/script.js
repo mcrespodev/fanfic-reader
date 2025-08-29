@@ -20,7 +20,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Sidebar
     chaptersList: $("#chaptersList"),
-    quickFilter: $("#quickFilter"),
+    // quickFilter: $("#quickFilter"),
     btnClearFilter: $("#btnClearFilter"),
 
     // Reader
@@ -28,8 +28,8 @@ document.addEventListener("DOMContentLoaded", () => {
     chapterTitle: $("#chapterTitle"),
     chapterCode: $("#chapterCode"),
     chapterContent: $("#chapterContent"),
-    btnPrev: $("#btnPrev"),
-    btnNext: $("#btnNext"),
+    // btnPrev: $("#btnPrev"),
+    // btnNext: $("#btnNext"),
     pdfFrame: $("#pdfFrame"),
 
     // Template para items
@@ -159,8 +159,9 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // Prev/Next
-    els.btnPrev.disabled = index <= 0;
-    els.btnNext.disabled = index >= state.chapters.length - 1;
+    // els.btnPrev.disabled = index <= 0;
+    // els.btnNext.disabled = index >= state.chapters.length - 1;
+    updateChapterBoxUI();
   }
 
   // ---------------------------
@@ -168,6 +169,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // ---------------------------
   function initPlayer() {
     const a = state.audio;
+    a.volume = 0.1;
     a.preload = "metadata";
 
     // metadata -> mostrar duración
@@ -205,20 +207,22 @@ document.addEventListener("DOMContentLoaded", () => {
 
     els.btnMute.addEventListener("click", () => {
       a.muted = !a.muted;
-      els.btnMute.innerHTML = a.muted ? '<i class="bi bi-volume-mute-fill fs-6"></i>' : '<i class="bi bi-volume-up-fill fs-6"></i>';
+      els.btnMute.innerHTML = a.muted
+        ? '<i class="bi bi-volume-mute-fill fs-6"></i>'
+        : '<i class="bi bi-volume-up-fill fs-6"></i>';
     });
 
     // Estado inicial deshabilitado
     disablePlayer(true);
+    wireChapterBoxNav();
   }
 
   function setAudioSource(src, title) {
     const a = state.audio;
     a.src = src;
     a.currentTime = 0;
-    els.audioNowPlaying.textContent = title
-      ? `${title}`
-      : "|";
+    state.audio.volume = 0.1;
+    els.audioNowPlaying.textContent = title ? `${title}` : "|";
     disablePlayer(false);
     updatePlayButton(false);
   }
@@ -247,7 +251,9 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function updatePlayButton(isPlaying) {
-    els.btnAudio.innerHTML = isPlaying ? '<i class="bi bi-pause-fill"></i>' : '<i class="bi bi-play-fill"></i>';
+    els.btnAudio.innerHTML = isPlaying
+      ? '<i class="bi bi-pause-fill"></i>'
+      : '<i class="bi bi-play-fill"></i>';
   }
 
   function disablePlayer(disabled) {
@@ -257,36 +263,93 @@ document.addEventListener("DOMContentLoaded", () => {
     els.btnMute.disabled = disabled;
   }
 
+  function goPrevChapter() {
+    if (state.currentIndex > 0) {
+      const prev = state.chapters[state.currentIndex - 1];
+      openChapterByCode(prev.code);
+    }
+  }
+  function goNextChapter() {
+    if (state.currentIndex < state.chapters.length - 1) {
+      const next = state.chapters[state.currentIndex + 1];
+      openChapterByCode(next.code);
+    }
+  }
+
+  function wireChapterBoxNav() {
+    const prev = document.getElementById("btnPrevChapterBox");
+    const next = document.getElementById("btnNextChapterBox");
+    prev && prev.addEventListener("click", goPrevChapter);
+    next && next.addEventListener("click", goNextChapter);
+  }
+
+  function updateChapterBoxUI() {
+    const titleEl = document.getElementById("chapterHeaderTitle");
+    if (titleEl)
+      titleEl.textContent =
+        state.chapters[state.currentIndex]?.title || "Capítulo";
+
+    const atStart = state.currentIndex <= 0;
+    const atEnd = state.currentIndex >= state.chapters.length - 1;
+    const prev = document.getElementById("btnPrevChapterBox");
+    const next = document.getElementById("btnNextChapterBox");
+    if (prev) prev.disabled = atStart;
+    if (next) next.disabled = atEnd;
+  }
+
   // ---------------------------
   // UI: filtro, prev/next
   // ---------------------------
   function attachUIEvents() {
-    // Filtro rápido por título o código
-    els.quickFilter.addEventListener("input", () => {
-      const q = (els.quickFilter.value || "").toLowerCase();
-      state.filtered = !q
-        ? state.chapters.slice()
-        : state.chapters.filter(
-            (c) =>
-              c.title.toLowerCase().includes(q) ||
-              c.code.toLowerCase().includes(q)
-          );
-      renderChapterList(state.filtered);
-    });
-    els.btnClearFilter.addEventListener("click", () => {
-      els.quickFilter.value = "";
-      state.filtered = state.chapters.slice();
-      renderChapterList(state.filtered);
-    });
-
-    // Prev / Next
-    els.btnPrev.addEventListener("click", () => {
-      if (state.currentIndex > 0)
-        openChapterByCode(state.chapters[state.currentIndex - 1].code);
-    });
-    els.btnNext.addEventListener("click", () => {
-      if (state.currentIndex < state.chapters.length - 1)
-        openChapterByCode(state.chapters[state.currentIndex + 1].code);
-    });
+    // // Filtro rápido por título o código
+    // els.quickFilter.addEventListener("input", () => {
+    //   const q = (els.quickFilter.value || "").toLowerCase();
+    //   state.filtered = !q
+    //     ? state.chapters.slice()
+    //     : state.chapters.filter(
+    //         (c) =>
+    //           c.title.toLowerCase().includes(q) ||
+    //           c.code.toLowerCase().includes(q)
+    //       );
+    //   renderChapterList(state.filtered);
+    // });
+    // els.btnClearFilter.addEventListener("click", () => {
+    //   els.quickFilter.value = "";
+    //   state.filtered = state.chapters.slice();
+    //   renderChapterList(state.filtered);
+    // });
+    // // Prev / Next
+    // els.btnPrev.addEventListener("click", () => {
+    //   if (state.currentIndex > 0)
+    //     openChapterByCode(state.chapters[state.currentIndex - 1].code);
+    // });
+    // els.btnNext.addEventListener("click", () => {
+    //   if (state.currentIndex < state.chapters.length - 1)
+    //     openChapterByCode(state.chapters[state.currentIndex + 1].code);
+    // });
   }
 });
+
+(function attachSidebarAutoClose() {
+  const list = document.getElementById("chaptersList");
+  const sidebarEl = document.getElementById("sidebar");
+  if (!list || !sidebarEl) return;
+
+  const offcanvas = bootstrap.Offcanvas.getOrCreateInstance(sidebarEl);
+
+  // Delegación: vale para items creados dinámicamente
+  list.addEventListener("click", (e) => {
+    // Ajusta el selector según tu markup: .list-group-item o .chapter-item
+    const item = e.target.closest(".chapter-item");
+    if (!item) return;
+
+    // Si tu item guarda el code en data-code:
+    const code = item.dataset.code;
+    if (code && typeof openChapterByCode === "function") {
+      openChapterByCode(code);
+    }
+
+    // Cierra el offcanvas
+    offcanvas.hide();
+  });
+})();

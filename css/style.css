@@ -189,3 +189,41 @@ body { padding-bottom: calc(var(--player-h) + env(safe-area-inset-bottom)); }
   .player-center { display: none !important; }
   .player-right .form-range { width: 90px; }
 }
+
+/* Ajustes finos en móviles muy pequeños */
+@media (max-width: 375px){
+  #audioNowPlaying { max-width: 38vw; }
+}
+
+/* Botones laterales desktop */
+.chapter-nav{
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 5;
+  width: 48px; height: 48px;
+  border-radius: 999px;
+  display: inline-flex; align-items: center; justify-content: center;
+  background: rgba(0,0,0,0.4);
+  color: #fff; border: none;
+  box-shadow: 0 2px 8px rgba(0,0,0,.2);
+  backdrop-filter: blur(4px);
+}
+.chapter-nav:hover{ background: rgba(0,0,0,0.55); }
+.chapter-nav-left { left: 12px; }
+.chapter-nav-right{ right: 12px; }
+
+/* Evitar que se superpongan con la player bar inferior */
+@media (min-width: 992px){
+  #chapterArea { padding-bottom: var(--player-h, 64px); }
+}
+
+.chapter-header {
+  min-height: 48px;
+  z-index: 5;
+}
+
+.chapter-header .chapter-title {
+  max-width: 70%;
+  text-align: center;
+}
