@@ -154,6 +154,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // Audio
     if (chap.audioPath) {
       setAudioSource(chap.audioPath, chap.titleSong);
+      play();
     } else {
       clearAudio();
     }
