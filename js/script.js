@@ -11,7 +11,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const els = {
     // Navbar / Player
     btnAudio: $("#btnAudio"),
-    audioSeek: $("#audioSeek"),
     audioVolume: $("#audioVolume"),
     btnMute: $("#btnMute"),
     audioCurrent: $("#audioCurrent"),
@@ -126,8 +125,6 @@ document.addEventListener("DOMContentLoaded", () => {
       els.chapterCover.classList.add("d-none"); // ocúltalo si no hay imagen
     }
 
-    // Texto (simple: dividir por dobles saltos en párrafos)
-    // els.chapterContent.innerHTML = '<div class="text-muted">Cargando…</div>';
     try {
       // PDF (con PDF.js)
       const pdfFrame = document.getElementById("pdfFrame");
@@ -138,6 +135,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         els.pdfFrame.src = `${viewerAbs}?file=${encodeURIComponent(pdfAbs)}`;
 
+        console.log(els.pdfFrame.src);
         // const viewer = `pdfjs/web/viewer.html#file=${encodeURIComponent(
         //   chap.pdfPath
         // )}`;
@@ -176,16 +174,11 @@ document.addEventListener("DOMContentLoaded", () => {
     // metadata -> mostrar duración
     a.addEventListener("loadedmetadata", () => {
       els.audioDuration.textContent = formatTime(a.duration);
-      els.audioSeek.max = a.duration || 0;
-      els.audioSeek.value = 0;
     });
 
-    // progreso -> actualizar current y slider
+        // progreso -> actualizar current y slider
     a.addEventListener("timeupdate", () => {
       els.audioCurrent.textContent = formatTime(a.currentTime);
-      if (!els.audioSeek.matches(":active")) {
-        els.audioSeek.value = a.currentTime;
-      }
     });
 
     // fin -> volver botón a ▶
@@ -195,11 +188,6 @@ document.addEventListener("DOMContentLoaded", () => {
     els.btnAudio.addEventListener("click", () => {
       if (!a.src) return;
       a.paused ? play() : pause();
-    });
-
-    els.audioSeek.addEventListener("input", () => {
-      const t = Number(els.audioSeek.value) || 0;
-      a.currentTime = Math.max(0, Math.min(t, a.duration || 0));
     });
 
     els.audioVolume.addEventListener("input", () => {
@@ -235,7 +223,6 @@ document.addEventListener("DOMContentLoaded", () => {
     els.audioNowPlaying.textContent = "Sin canción";
     els.audioCurrent.textContent = "0:00";
     els.audioDuration.textContent = "0:00";
-    els.audioSeek.value = 0;
     disablePlayer(true);
     updatePlayButton(false);
   }
@@ -259,7 +246,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function disablePlayer(disabled) {
     els.btnAudio.disabled = disabled;
-    els.audioSeek.disabled = disabled;
     els.audioVolume.disabled = disabled;
     els.btnMute.disabled = disabled;
   }
