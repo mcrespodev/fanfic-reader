@@ -54,7 +54,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // ====== Inicializar ======
   initPlayer();
-  loadChapters();
+  // loadChapters();
+  loadChapters().then(() => {
+    if (state.chapters?.length) {
+      openChapterByCode(state.chapters[0].code);
+    }
+  });
   attachUIEvents();
 
   // ---------------------------
@@ -176,7 +181,7 @@ document.addEventListener("DOMContentLoaded", () => {
       els.audioDuration.textContent = formatTime(a.duration);
     });
 
-        // progreso -> actualizar current y slider
+    // progreso -> actualizar current y slider
     a.addEventListener("timeupdate", () => {
       els.audioCurrent.textContent = formatTime(a.currentTime);
     });
@@ -394,25 +399,28 @@ document.addEventListener("DOMContentLoaded", () => {
 // })();
 
 (() => {
-  const root  = document.documentElement;
-  const btn   = document.getElementById('btnTema');
-  const icon  = document.getElementById('iconoTema');
-  const label = document.getElementById('labelTema');
+  const root = document.documentElement;
+  const btn = document.getElementById("btnTema");
+  const icon = document.getElementById("iconoTema");
+  const label = document.getElementById("labelTema");
 
   function applyTheme(theme) {
-    root.setAttribute('data-bs-theme', theme);
-    if (icon) icon.className = theme === 'dark' ? 'bi bi-sun-fill' : 'bi bi-moon-stars-fill';
-    if (label) label.textContent = theme === 'dark' ? 'Modo claro' : 'Modo oscuro';
+    root.setAttribute("data-bs-theme", theme);
+    if (icon)
+      icon.className =
+        theme === "dark" ? "bi bi-sun-fill" : "bi bi-moon-stars-fill";
+    if (label)
+      label.textContent = theme === "dark" ? "Modo claro" : "Modo oscuro";
   }
 
   // Siempre inicia en dark
-  applyTheme('dark');
+  applyTheme("dark");
 
   // Alterna en cada click
-  btn?.addEventListener('click', (e) => {
+  btn?.addEventListener("click", (e) => {
     e.preventDefault();
-    const current = root.getAttribute('data-bs-theme');
-    const next = current === 'dark' ? 'light' : 'dark';
+    const current = root.getAttribute("data-bs-theme");
+    const next = current === "dark" ? "light" : "dark";
     applyTheme(next);
   });
 })();

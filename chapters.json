@@ -1,5 +1,15 @@
 [
   {
+    "code": "C0",
+    "title": "Portada",
+    "titleShort": "Portada",
+    "titleSong": "Red Velvet - Bad Boy",
+    "song": "bad-boy.mp3",
+    "image": "cap1.jpg",
+    "icon": "cap1.png",
+    "pdf": "cap1.pdf"
+  },
+  {
     "code": "C1-P1",
     "title": "Capítulo 1 - Donde las líneas se cruzan",
     "titleShort": "Capítulo 1",
@@ -9,7 +19,7 @@
     "icon": "cap1.png",
     "pdf": "cap1.pdf"
   },
-    {
+  {
     "code": "C2-P1",
     "title": "Capítulo 2 - 2/22",
     "titleShort": "Capítulo 2",
