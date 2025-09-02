@@ -288,3 +288,13 @@ body { padding-bottom: calc(var(--player-h) + env(safe-area-inset-bottom)); }
 :root[data-bs-theme="dark"] .chapter-thumb {
   filter: invert(1) brightness(1.2) contrast(0.9);
 }
+
+:root[data-bs-theme="light"] {
+  --bg: linear-gradient(180deg, #FEE1EA, #E4F5F0);
+  --fg: #212529; /* color de texto */
+}
+
+:root[data-bs-theme="dark"] {
+  --bg: linear-gradient(180deg, #28202A, #1F2B2A);
+  --fg: #f8f9fa; /* color de texto */
+}
