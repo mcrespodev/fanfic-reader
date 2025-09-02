@@ -340,3 +340,55 @@ document.addEventListener("DOMContentLoaded", () => {
     offcanvas.hide();
   });
 })();
+
+// Cambio de Tema Claro/Oscuro
+(() => {
+  const STORAGE_KEY = 'color-scheme';
+  const root = document.documentElement;
+  const btn = document.getElementById('btnTema');
+  const icono = document.getElementById('iconoTema');
+  const label = document.getElementById('labelTema');
+  const media = window.matchMedia('(prefers-color-scheme: dark)');
+
+  const getSystemPref = () => (media.matches ? 'dark' : 'light');
+  const getSaved = () => localStorage.getItem(STORAGE_KEY) || 'auto';
+  const resolveTheme = (pref) => (pref === 'auto' ? getSystemPref() : pref);
+
+  function applyTheme(pref) {
+    const effective = resolveTheme(pref);
+    root.setAttribute('data-bs-theme', effective);
+
+    // Cambiar icono según modo
+    if (effective === 'dark') {
+      icono.className = "bi bi-sun-fill"; // Sol para modo oscuro
+      label.textContent = "Modo claro";
+    } else {
+      icono.className = "bi bi-moon-stars-fill"; // Luna para modo claro
+      label.textContent = "Modo oscuro";
+    }
+  }
+
+  function save(pref) {
+    localStorage.setItem(STORAGE_KEY, pref);
+  }
+
+  function nextPref(current) {
+    if (current === 'light') return 'dark';
+    if (current === 'dark') return 'light';
+  }
+
+  const initial = getSaved();
+  applyTheme(initial);
+
+  media.addEventListener('change', () => {
+    const pref = getSaved();
+    if (pref === 'auto') applyTheme('auto');
+  });
+
+  btn?.addEventListener('click', () => {
+    const cur = getSaved();
+    const next = nextPref(cur);
+    save(next);
+    applyTheme(next);
+  });
+})();

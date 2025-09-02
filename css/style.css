@@ -225,3 +225,66 @@ body { padding-bottom: calc(var(--player-h) + env(safe-area-inset-bottom)); }
   max-width: 70%;
   text-align: center;
 }
+
+/* styles.css */
+
+/* Suaviza el cambio de tema (respeta reduce motion) */
+@media (prefers-reduced-motion: no-preference) {
+  :root {
+    transition: color 200ms linear, background-color 200ms linear, border-color 200ms linear;
+  }
+  * {
+    transition: background-color 200ms linear, color 200ms linear, border-color 200ms linear;
+  }
+}
+
+/* Variables propias (útiles si tienes elementos fuera de Bootstrap) */
+:root {
+  --app-bg: var(--bs-body-bg);
+  --app-fg: var(--bs-body-color);
+  --app-card-bg: var(--bs-body-bg);
+  --app-card-border: var(--bs-border-color);
+}
+
+/* En dark puedes sobreescribir tus tokens si lo necesitas */
+:root[data-bs-theme="dark"] {
+  --app-card-bg: #0f1115;      /* ejemplo fino */
+  --app-card-border: #2a2f3a;  /* ejemplo fino */
+}
+
+/* Ejemplo de uso con tus bloques custom */
+.my-block {
+  background: var(--app-card-bg);
+  color: var(--app-fg);
+  border: 1px solid var(--app-card-border);
+  border-radius: .75rem;
+  padding: 1rem;
+}
+
+/* Botones que cambian con el tema */
+.btn-outline-auto {
+  color: var(--bs-body-color);
+  border-color: var(--bs-body-color);
+}
+.btn-outline-auto:hover {
+  background-color: var(--bs-body-color);
+  color: var(--bs-body-bg);
+}
+
+/* Spans que cambian con el tema */
+.span-auto {
+  color: var(--bs-body-color);
+  /* background-color: var(--bs-body-bg); */
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
+}
+
+/* En modo claro se muestran tal cual */
+:root[data-bs-theme="light"] .chapter-thumb {
+  filter: none;
+}
+
+/* En modo oscuro se invierten los colores */
+:root[data-bs-theme="dark"] .chapter-thumb {
+  filter: invert(1) brightness(1.2) contrast(0.9);
+}

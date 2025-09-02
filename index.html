@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="es">
+<html lang="es" data-bs-theme="dark">
 
 <head>
   <meta charset="utf-8" />
@@ -35,7 +35,7 @@
     <div class="container-fluid d-flex justify-content-between align-items-center">
 
       <!-- Botón menú (abre sidebar) -->
-      <button id="btnMenu" class="btn btn-outline-secondary me-2" type="button" data-bs-toggle="offcanvas"
+      <button id="btnMenu" class="btn btn-outline-auto me-2" type="button" data-bs-toggle="offcanvas"
         data-bs-target="#sidebar" aria-controls="sidebar" aria-label="Menú">
         <i class="bi bi-list fs-6"></i>
         <span class="d-none d-md-inline ms-1">Capítulos</span>
@@ -47,10 +47,9 @@
       </span>
 
       <!-- Botón menú (abre sidebar) -->
-      <button id="btnMenu" class="btn btn-outline-secondary me-2" type="button" data-bs-toggle="offcanvas"
-        data-bs-target="#sidebar" aria-controls="sidebar" aria-label="Menú">
-        <span class="d-none d-md-inline me-1">Modo oscuro</span>
-        <i class="bi bi-moon-stars-fill"></i>
+      <button id="btnTema" class="btn btn-outline-auto me-2" type="button" aria-label="Tema">
+        <span id="labelTema" class="d-none d-md-inline me-1">Modo oscuro</span>
+        <i id="iconoTema" class="bi bi-moon-stars-fill"></i>
       </button>
 
   </nav>
@@ -68,14 +67,16 @@
       <!-- CENTRO: progreso (centrado absoluto) -->
       <div class="player-center d-flex align-items-center gap-2">
         <div class="d-flex align-items-center gap-1 small">
-          <time id="audioCurrent">0:00</time><span>/</span><time id="audioDuration">0:00</time>
-          <div id="audioNowPlaying" class="text-truncate" style="max-width: 36vw;">Sin canción</div>
+          <time id="audioCurrent" class="span-auto">0:00</time><span class="span-auto">/</span><time id="audioDuration"
+            class="span-auto">0:00</time>
+          <!-- <div id="audioNowPlaying" class="text-truncate" style="max-width: 36vw;">Sin canción</div> -->
+          <span id="audioNowPlaying" class="span-auto text-truncate" style="max-width: 36vw;">Sin canción</span>
         </div>
       </div>
 
       <!-- DERECHA: mute + volumen -->
       <div class="player-right d-flex align-items-center gap-2 ms-auto">
-        <button id="btnMute" class="btn btn-outline-secondary btn-sm" aria-label="Silenciar" disabled><i
+        <button id="btnMute" class="btn btn-outline-auto btn-sm" aria-label="Silenciar" disabled><i
             class="bi bi-volume-up-fill fs-6"></i></button>
         <input id="audioVolume" type="range" class="form-range my-0 d-none d-md-block" min="0" max="1" step="0.01"
           value="0.1" />
@@ -118,17 +119,16 @@
       <!-- Barra de capítulo (minimal) -->
       <div id="chapterHeader"
         class="chapter-header d-flex justify-content-between align-items-center px-3 py-2 border-bottom bg-body-tertiary">
-        <button id="btnPrevChapterBox" class="btn btn-outline-secondary btn-sm" aria-label="Capítulo anterior" disabled>
+        <button id="btnPrevChapterBox" class="btn btn-outline-auto btn-sm" aria-label="Capítulo anterior" disabled>
           <i class="bi bi-chevron-left"></i>
           <span class="d-none d-md-inline">Anterior</span>
         </button>
 
         <div class="chapter-title text-truncate fw-semibold">
-          <span id="chapterHeaderTitle">Capítulo</span>
+          <span id="chapterHeaderTitle" class="span-auto">Capítulo</span>
         </div>
 
-        <button id="btnNextChapterBox" class="btn btn-outline-secondary btn-sm" aria-label="Capítulo siguiente"
-          disabled>
+        <button id="btnNextChapterBox" class="btn btn-outline-auto btn-sm" aria-label="Capítulo siguiente" disabled>
           <span class="d-none d-md-inline">Siguiente</span>
           <i class="bi bi-chevron-right"></i>
         </button>
@@ -204,7 +204,7 @@
 
   <!-- ======= Plantilla ======= -->
   <template id="tplChapterItem">
-    <button class="chapter-item btn d-flex align-items-center gap-2 w-100 text-start">
+    <button class="chapter-item btn btn-outline-auto d-flex align-items-center gap-2 w-95 text-start m-2">
       <img class="chapter-thumb rounded" alt="Portada" width="56" height="56" />
       <span class="chapter-title fw-semibold"></span>
     </button>
