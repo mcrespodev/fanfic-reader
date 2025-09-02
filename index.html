@@ -111,7 +111,7 @@
     <!-- ======= Área de lectura ======= -->
     <section id="chapterContent" class="chapterContent card-body">
       <div class="mb-3" hidden>
-        <img id="chapterCover" class="chapter-cover rounded d-block" alt="Portada" />
+        <img id="chapterCover1" class="chapter-cover rounded d-block" alt="Portada" />
         <h2 id="chapterTitle" hidden>...</h2>
         <p id="chapterCode" hidden></p>
       </div>
@@ -124,8 +124,9 @@
           <span class="d-none d-md-inline">Anterior</span>
         </button>
 
-        <div class="chapter-title text-truncate fw-semibold">
-          <span id="chapterHeaderTitle" class="span-auto">Portada</span>
+        <div class="chapter-title text-truncate fw-semibold align-items-center" style="display: flex;">
+          <img id="chapterCover" class="chapter-thumb" style="max-width: 24px; max-height: 24px; border-radius: 0;" alt="Icono" />
+          <span id="chapterHeaderTitle" style="font-size: 20px;" class="span-auto">Portada</span>
         </div>
 
         <button id="btnNextChapterBox" class="btn btn-outline-auto btn-sm" aria-label="Capítulo siguiente" disabled>

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   width="16"
+   height="16"
+   fill="currentColor"
+   class="bi bi-list-ul"
+   viewBox="0 0 16 16"
+   version="1.1"
+   id="svg1"
+   sodipodi:docname="cap36.svg"
+   inkscape:version="1.4.2 (f4327f4, 2025-05-13)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs1" />
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:zoom="50.9375"
+     inkscape:cx="8"
+     inkscape:cy="7.8822086"
+     inkscape:window-width="1920"
+     inkscape:window-height="1017"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg1" />
+  <path
+     d="m 12.542217,5.9527608 a 2.5901841,2.5901841 0 1 0 0,-5.18036808 2.5901841,2.5901841 0 0 0 0,5.18036808"
+     id="path4"
+     style="stroke-width:2.59019" />
+  <path
+     d="m 12.539713,5.1190179 a 1.7754602,1.7754602 0 1 0 0,-3.55092 1.7754602,1.7754602 0 0 0 0,3.55092"
+     id="path4-8"
+     style="fill:#ffffff;stroke-width:1.77546" />
+  <path
+     d="m 2.3810306,13.59259 c -0.1952624,-0.195262 -0.1952624,-0.511845 0,-0.707107 L 8.7449912,6.5215213 c 0.471404,-0.4714044 1.1785112,0.2357024 0.707107,0.7071068 L 3.0881374,13.59259 c -0.1952621,0.195262 -0.5118447,0.195262 -0.7071068,0"
+     id="path3"
+     sodipodi:nodetypes="ccsssc" />
+  <path
+     d="m 2.0080244,11.271118 a 0.5,0.5 0 0 1 0,-0.707108 l 6.363961,-6.3639611 a 0.50000008,0.50000008 0 0 1 0.707107,0.7071068 L 2.7151313,11.271118 a 0.5,0.5 0 0 1 -0.7071069,0"
+     id="path2" />
+  <path
+     d="m 4.8546501,13.837988 a 0.5,0.5 0 0 1 0,-0.707107 L 11.218611,6.7669201 a 0.50000008,0.50000008 0 0 1 0.707107,0.7071068 L 5.5617569,13.837988 a 0.5,0.5 0 0 1 -0.7071068,0"
+     id="path1" />
+</svg>

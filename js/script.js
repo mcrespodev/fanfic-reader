@@ -120,10 +120,10 @@ document.addEventListener("DOMContentLoaded", () => {
     // Encabezado
     els.chapterTitle.textContent = chap.title || chap.code;
     els.chapterCode.textContent = chap.code || "";
-    els.chapterCover.src = chap.imagePath;
+    els.chapterCover.src = chap.iconPath;
 
-    if (chap.imagePath) {
-      els.chapterCover.src = chap.imagePath;
+    if (chap.iconPath) {
+      els.chapterCover.src = chap.iconPath;
       els.chapterCover.classList.remove("d-none");
     } else {
       els.chapterCover.removeAttribute("src"); // evita "undefined"

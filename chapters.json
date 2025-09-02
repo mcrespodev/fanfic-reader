@@ -6,7 +6,7 @@
     "titleSong": "Red Velvet - Bad Boy",
     "song": "bad-boy.mp3",
     "image": "cap1.jpg",
-    "icon": "cap1.png",
+    "icon": "portada.svg",
     "pdf": "cap1.pdf"
   },
   {
@@ -16,7 +16,7 @@
     "titleSong": "Red Velvet - Bad Boy",
     "song": "bad-boy.mp3",
     "image": "cap1.jpg",
-    "icon": "cap1.png",
+    "icon": "cap1.svg",
     "pdf": "cap1.pdf"
   },
   {
@@ -26,7 +26,7 @@
     "titleSong": "aespa - Lucid Dream",
     "song": "lucid-dream.mp3",
     "image": "cap2.jpg",
-    "icon": "cap2.png",
+    "icon": "cap2.svg",
     "pdf": "cap2.pdf"
   }
 ]
