@@ -11,8 +11,9 @@
   },
   {
     "code": "C1-P1",
-    "title": "Capítulo 1 - Donde las líneas se cruzan",
-    "titleShort": "Capítulo 1",
+    "chapter": "Capítulo 1",
+    "title": "Donde las líneas se cruzan",
+    "part": "Parte I",
     "titleSong": "Red Velvet - Bad Boy",
     "song": "bad-boy.mp3",
     "image": "cap1.jpg",

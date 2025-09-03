@@ -98,7 +98,7 @@ document.addEventListener("DOMContentLoaded", () => {
       node.querySelector(".chapter-thumb").src = c.iconPath;
       node.querySelector(".chapter-thumb").alt = `Portada ${c.title}`;
       node.querySelector(".chapter-title").textContent =
-        c.titleShort || c.title;
+        c.chapter || c.title;
       node.addEventListener("click", () => openChapterByCode(c.code));
       els.chaptersList.appendChild(node);
     });
@@ -140,7 +140,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         els.pdfFrame.src = `${viewerAbs}?file=${encodeURIComponent(pdfAbs)}`;
 
-        console.log(els.pdfFrame.src);
+        // console.log(els.pdfFrame.src);
         // const viewer = `pdfjs/web/viewer.html#file=${encodeURIComponent(
         //   chap.pdfPath
         // )}`;
@@ -281,9 +281,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function updateChapterBoxUI() {
     const titleEl = document.getElementById("chapterHeaderTitle");
-    if (titleEl)
-      titleEl.textContent =
-        state.chapters[state.currentIndex]?.title || "Capítulo";
+    const chapterEl = document.getElementById("chapterHeaderChapter");
+    const partEl = document.getElementById("chapterHeaderPart");
+    
+    if (titleEl){
+      titleEl.textContent = state.chapters[state.currentIndex]?.title || "Título";
+      chapterEl.textContent = state.chapters[state.currentIndex]?.chapter || "Capítulo";
+      partEl.textContent = state.chapters[state.currentIndex]?.part || "";
+    }
 
     const atStart = state.currentIndex <= 0;
     const atEnd = state.currentIndex >= state.chapters.length - 1;
