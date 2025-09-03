@@ -42,9 +42,13 @@
       </button>
 
       <!-- Título centrado -->
-      <span class="player-center navbar-brand mx-auto fw-bold text-center">
+      <!-- <span class="player-center navbar-brand mx-auto fw-bold text-center">
         MauFic
-      </span>
+      </span> -->
+
+      <!-- Icono centrado -->
+      <img id="chapterCover" class="chapter-thumb p-2 img-fluid player-center" style="border-radius: 0;" alt="Icono" />
+
 
       <!-- Botón menú (abre sidebar) -->
       <button id="btnTema" class="btn btn-outline-auto me-2" aria-label="Tema">
@@ -117,17 +121,15 @@
       </div>
 
       <!-- Barra de capítulo (minimal) -->
-      <div id="chapterHeader"
-        class="chapter-header d-flex justify-content-between align-items-center px-3 py-2 border-bottom bg-body-tertiary">
+      <div id="chapterHeader" class="chapter-header d-flex justify-content-between align-items-center px-3 py-4 border-bottom bg-body-tertiary">
         <button id="btnPrevChapterBox" class="btn btn-outline-auto btn-sm" aria-label="Capítulo anterior" disabled>
           <i class="bi bi-chevron-left"></i>
           <span class="d-none d-md-inline">Anterior</span>
         </button>
 
         <div class="chapter-title fw-semibold align-items-center" style="display: flex;">
-          <img id="chapterCover" class="chapter-thumb p-2 img-fluid" style="border-radius: 0;"
-            alt="Icono" />
-          <div>
+          <!-- <img id="chapterCover" class="chapter-thumb p-2 img-fluid" style="border-radius: 0;" alt="Icono" /> -->
+          <div class="player-center">
             <span id="chapterHeaderChapter" style="display: block; font-size: 12px;" class="span-auto my-0 py-0 fw-light">Capítulo</span>
             <span id="chapterHeaderTitle" style="display: block; font-size: 20px;" class="span-auto my-0 py-0">Portada</span>
             <span id="chapterHeaderPart" style="display: block; font-size: 10px;" class="span-auto my-0 py-0 fw-light">Parte</span>
