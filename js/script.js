@@ -157,7 +157,10 @@ document.addEventListener("DOMContentLoaded", () => {
     // Audio
     if (chap.audioPath) {
       setAudioSource(chap.audioPath, chap.titleSong);
-      play();
+      setTimeout(() => {
+        play();
+      }, 1000);
+      // play();
     } else {
       clearAudio();
     }
@@ -261,6 +264,7 @@ document.addEventListener("DOMContentLoaded", () => {
       openChapterByCode(prev.code);
     }
   }
+
   function goNextChapter() {
     if (state.currentIndex < state.chapters.length - 1) {
       const next = state.chapters[state.currentIndex + 1];
