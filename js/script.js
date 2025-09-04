@@ -97,8 +97,7 @@ document.addEventListener("DOMContentLoaded", () => {
       node.dataset.code = c.code;
       node.querySelector(".chapter-thumb").src = c.iconPath;
       node.querySelector(".chapter-thumb").alt = `Portada ${c.title}`;
-      node.querySelector(".chapter-title").textContent =
-        c.chapter || c.title;
+      node.querySelector(".chapter-title").textContent = c.chapter || c.title;
       node.addEventListener("click", () => openChapterByCode(c.code));
       els.chaptersList.appendChild(node);
     });
@@ -220,6 +219,12 @@ document.addEventListener("DOMContentLoaded", () => {
     a.currentTime = 0;
     state.audio.volume = 0.1;
     els.audioNowPlaying.textContent = title ? `${title}` : "|";
+    if (title.length > 20 && window.innerWidth < 768){
+      activarScroll();
+    }
+    else {
+      desactivarScroll();
+    }
     disablePlayer(false);
     updatePlayButton(false);
   }
@@ -283,10 +288,12 @@ document.addEventListener("DOMContentLoaded", () => {
     const titleEl = document.getElementById("chapterHeaderTitle");
     const chapterEl = document.getElementById("chapterHeaderChapter");
     const partEl = document.getElementById("chapterHeaderPart");
-    
-    if (titleEl){
-      titleEl.textContent = state.chapters[state.currentIndex]?.title || "Título";
-      chapterEl.textContent = state.chapters[state.currentIndex]?.chapter || "Capítulo";
+
+    if (titleEl) {
+      titleEl.textContent =
+        state.chapters[state.currentIndex]?.title || "Título";
+      chapterEl.textContent =
+        state.chapters[state.currentIndex]?.chapter || "Capítulo";
       partEl.textContent = state.chapters[state.currentIndex]?.part || "";
     }
 
@@ -296,6 +303,16 @@ document.addEventListener("DOMContentLoaded", () => {
     const next = document.getElementById("btnNextChapterBox");
     if (prev) prev.disabled = atStart;
     if (next) next.disabled = atEnd;
+  }
+
+  function activarScroll() {
+    const texto = document.getElementById("audioNowPlaying");
+    texto.classList.add("scroll-text");
+  }
+  
+  function desactivarScroll() {
+    const texto = document.getElementById("audioNowPlaying");
+    texto.classList.remove("scroll-text");
   }
 
   // ---------------------------

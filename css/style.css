@@ -298,3 +298,14 @@ body { padding-bottom: calc(var(--player-h) + env(safe-area-inset-bottom)); }
   --bg: linear-gradient(180deg, #28202A, #1F2B2A);
   --fg: #f8f9fa; /* color de texto */
 }
+
+.scroll-text {
+  display: inline-block;
+  padding-left: 10%;
+  animation: scroll 20s linear infinite;
+}
+
+@keyframes scroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-100%); }
+}
