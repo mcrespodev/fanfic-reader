@@ -331,3 +331,10 @@ body { padding-bottom: calc(var(--player-h) + env(safe-area-inset-bottom)); }
     transform: translateX(-100%);
   }
 }
+
+.pdf-container {
+  width: 100%;
+  height: 73vh;   /* 75% del alto de la pantalla */
+  overflow: hidden;
+  position: relative;
+}

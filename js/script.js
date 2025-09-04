@@ -229,14 +229,14 @@ document.addEventListener("DOMContentLoaded", () => {
     els.audioNowPlaying.textContent = cancion ? `${cancion}` : "Sin canción";
     els.artistNowPlaying.textContent = artista ? `${artista}` : "Sin artista";
 
-      // if (title.length > 18 && window.innerWidth < 768){
-      //   activarScroll();
-      // }
-      // else {
-      //   desactivarScroll();
-      // }
+    // if (title.length > 18 && window.innerWidth < 768){
+    //   activarScroll();
+    // }
+    // else {
+    //   desactivarScroll();
+    // }
 
-      disablePlayer(false);
+    disablePlayer(false);
     updatePlayButton(false);
   }
 
@@ -308,10 +308,14 @@ document.addEventListener("DOMContentLoaded", () => {
       partEl.textContent = state.chapters[state.currentIndex]?.part || "";
     }
 
-    if (titleEl.textContent.length < 15) {
-      titleEl.style.fontSize = "16px";
-    } else {
+    if (titleEl.textContent.length >= 15) {
       titleEl.style.fontSize = "14px";
+    } else {
+      titleEl.style.fontSize = "16px";
+    }
+
+    if (window.innerWidth > 768) {
+      titleEl.style.fontSize = "20px";
     }
 
     const atStart = state.currentIndex <= 0;
