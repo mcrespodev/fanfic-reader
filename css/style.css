@@ -341,6 +341,6 @@ body { padding-bottom: calc(var(--player-h) + env(safe-area-inset-bottom)); }
 
 @media (max-width: 1000px) {
   .pdf-container {
-    height: 55vh; /* un poco menos en pantallas chicas */
+    height: 65vh; /* un poco menos en pantallas chicas */
   }
 }
