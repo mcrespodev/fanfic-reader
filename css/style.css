@@ -338,3 +338,9 @@ body { padding-bottom: calc(var(--player-h) + env(safe-area-inset-bottom)); }
   overflow: hidden;
   position: relative;
 }
+
+@media (max-width: 768px) {
+  .pdf-container {
+    height: 60vh; /* un poco menos en pantallas chicas */
+  }
+}
