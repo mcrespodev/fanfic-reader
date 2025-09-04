@@ -16,6 +16,7 @@ document.addEventListener("DOMContentLoaded", () => {
     audioCurrent: $("#audioCurrent"),
     audioDuration: $("#audioDuration"),
     audioNowPlaying: $("#audioNowPlaying"),
+    artistNowPlaying: $("#artistNowPlaying"),
 
     // Sidebar
     chaptersList: $("#chaptersList"),
@@ -218,14 +219,24 @@ document.addEventListener("DOMContentLoaded", () => {
     a.src = src;
     a.currentTime = 0;
     state.audio.volume = 0.1;
-    els.audioNowPlaying.textContent = title ? `${title}` : "|";
-    if (title.length > 20 && window.innerWidth < 768){
-      activarScroll();
-    }
-    else {
-      desactivarScroll();
-    }
-    disablePlayer(false);
+
+    let partes = title.split(" - ");
+
+    // Guardamos en variables
+    let cancion = partes[0];
+    let artista = partes[1];
+
+    els.audioNowPlaying.textContent = cancion ? `${cancion}` : "Sin canción";
+    els.artistNowPlaying.textContent = artista ? `${artista}` : "Sin artista";
+
+      // if (title.length > 18 && window.innerWidth < 768){
+      //   activarScroll();
+      // }
+      // else {
+      //   desactivarScroll();
+      // }
+
+      disablePlayer(false);
     updatePlayButton(false);
   }
 
@@ -290,19 +301,17 @@ document.addEventListener("DOMContentLoaded", () => {
     const partEl = document.getElementById("chapterHeaderPart");
 
     if (titleEl) {
-      titleEl.textContent = state.chapters[state.currentIndex]?.title || "Título";
-      chapterEl.textContent = state.chapters[state.currentIndex]?.chapter || "Capítulo";
+      titleEl.textContent =
+        state.chapters[state.currentIndex]?.title || "Título";
+      chapterEl.textContent =
+        state.chapters[state.currentIndex]?.chapter || "Capítulo";
       partEl.textContent = state.chapters[state.currentIndex]?.part || "";
     }
 
-    if (titleEl.textContent.length >= 15 && titleEl.textContent.length < 22){
+    if (titleEl.textContent.length < 15) {
       titleEl.style.fontSize = "16px";
-    }
-    else if(titleEl.textContent.length >= 22) {
+    } else {
       titleEl.style.fontSize = "14px";
-    }
-    else{
-      titleEl.style.fontSize = "20px";
     }
 
     const atStart = state.currentIndex <= 0;
@@ -317,7 +326,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const texto = document.getElementById("audioNowPlaying");
     texto.classList.add("scroll-text");
   }
-  
+
   function desactivarScroll() {
     const texto = document.getElementById("audioNowPlaying");
     texto.classList.remove("scroll-text");
