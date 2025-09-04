@@ -339,7 +339,7 @@ body { padding-bottom: calc(var(--player-h) + env(safe-area-inset-bottom)); }
   position: relative;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1000px) {
   .pdf-container {
     height: 40vh; /* un poco menos en pantallas chicas */
   }
