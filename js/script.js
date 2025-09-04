@@ -290,11 +290,19 @@ document.addEventListener("DOMContentLoaded", () => {
     const partEl = document.getElementById("chapterHeaderPart");
 
     if (titleEl) {
-      titleEl.textContent =
-        state.chapters[state.currentIndex]?.title || "Título";
-      chapterEl.textContent =
-        state.chapters[state.currentIndex]?.chapter || "Capítulo";
+      titleEl.textContent = state.chapters[state.currentIndex]?.title || "Título";
+      chapterEl.textContent = state.chapters[state.currentIndex]?.chapter || "Capítulo";
       partEl.textContent = state.chapters[state.currentIndex]?.part || "";
+    }
+
+    if (titleEl.textContent.length >= 15 && titleEl.textContent.length < 22){
+      titleEl.style.fontSize = "16px";
+    }
+    else if(titleEl.textContent.length >= 22) {
+      titleEl.style.fontSize = "14px";
+    }
+    else{
+      titleEl.style.fontSize = "20px";
     }
 
     const atStart = state.currentIndex <= 0;
