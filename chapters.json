@@ -302,10 +302,10 @@
     "title": "El brillo en tus ojos",
     "part": "",
     "titleSong": "Off The Record - IVE",
-    "song": "lucid.mp3",
-    "image": "cap2.jpg",
-    "icon": "cap2.svg",
-    "pdf": "cap2.pdf"
+    "song": "off-the-record.mp3",
+    "image": "cap23.jpg",
+    "icon": "cap23.svg",
+    "pdf": "cap23.pdf"
   },
   {
     "code": "cap24",
@@ -332,7 +332,7 @@
   {
     "code": "cap26",
     "chapter": "Capítulo 26",
-    "title": "J’aime danser avec toi",
+    "title": "J'aime danser avec toi",
     "part": "",
     "titleSong": "Do the dance - ILLIT",
     "song": "do-the-dance.mp3",
@@ -378,8 +378,8 @@
     "chapter": "Capítulo 30",
     "title": "Sorpresas, sorpresas",
     "part": "",
-    "titleSong": "Girls Capitalism - tripleS",
-    "song": "girls-capitalism.mp3",
+    "titleSong": "Lovesick Girls - Blackpink",
+    "song": "lovesick-girls.mp3",
     "image": "cap30.jpg",
     "icon": "cap30.svg",
     "pdf": "cap30.pdf"
